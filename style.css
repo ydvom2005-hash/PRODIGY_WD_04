@@ -16,6 +16,11 @@
   font-family:'Inter',sans-serif;
 }
 
+html,body{
+  width:100%;
+  overflow-x:hidden;
+}
+
 body{
   display:flex;
   background:var(--bg);
@@ -24,10 +29,12 @@ body{
 
 .sidebar{
   width:240px;
-  height:100vh;
+  min-height:100vh;
   background:var(--panel);
   padding:32px 24px;
   position:fixed;
+  top:0;
+  left:0;
   border-right:1px solid rgba(255,255,255,.05);
 }
 
@@ -50,7 +57,7 @@ body{
   text-decoration:none;
   padding:10px 14px;
   border-radius:10px;
-  transition:.3s;
+  transition:.25s ease;
 }
 
 .sidebar a:hover,
@@ -76,12 +83,17 @@ section{
   align-items:center;
 }
 
+.hero-text{
+  max-width:640px;
+}
+
 .hero h1{
   font-size:56px;
+  line-height:1.1;
 }
 
 .role{
-  margin-top:12px;
+  margin-top:14px;
   font-size:20px;
   color:var(--muted);
 }
@@ -91,8 +103,8 @@ section{
 }
 
 .hero button{
-  margin-top:28px;
-  padding:14px 34px;
+  margin-top:30px;
+  padding:14px 36px;
   border:none;
   border-radius:var(--radius);
   background:var(--accent);
@@ -103,7 +115,7 @@ section{
 
 .section h2{
   font-size:34px;
-  margin-bottom:20px;
+  margin-bottom:22px;
   color:var(--accent);
 }
 
@@ -115,18 +127,18 @@ section{
 }
 
 .grid{
-  margin-top:30px;
+  margin-top:32px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
+  gap:26px;
 }
 
 .project-card{
-  padding:32px;
+  padding:34px;
   border-radius:var(--radius);
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.08);
-  transition:.3s;
+  transition:.3s ease;
 }
 
 .project-card:hover{
@@ -141,7 +153,7 @@ footer{
   border-top:1px solid rgba(255,255,255,.05);
 }
 
-@media (max-width: 1024px) {
+@media (max-width:1024px){
   .sidebar{
     width:200px;
   }
@@ -150,18 +162,26 @@ footer{
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width:768px){
   body{
     flex-direction:column;
   }
 
   .sidebar{
-    position:relative;
+    position:sticky;
+    top:0;
     width:100%;
-    height:auto;
+    min-height:auto;
+    flex-direction:row;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    padding:16px 20px;
+    z-index:1000;
+  }
+
+  .brand{
+    margin-bottom:0;
   }
 
   .sidebar nav{
@@ -174,8 +194,13 @@ footer{
   }
 
   .hero{
+    min-height:calc(100vh - 70px);
     padding:40px 20px;
     text-align:center;
+  }
+
+  .hero-text{
+    margin:auto;
   }
 
   .hero h1{
@@ -192,8 +217,13 @@ footer{
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width:480px){
   .hero h1{
     font-size:32px;
+  }
+
+  .sidebar nav{
+    flex-wrap:wrap;
+    justify-content:center;
   }
 }
